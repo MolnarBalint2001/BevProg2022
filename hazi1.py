@@ -9,13 +9,10 @@ texts = {
 def charCount():
 
     inWord = input("Adjon meg egy mondatot: ")
-    d={}
+    d = {c:inWord.count(c) for c in set(inWord)}
 
-    for x in inWord:
-        if x not in d:
-            d[x] = 1
-        else:
-            d[x]+=1
+
+
 
     print(d)
     print(inWord[::-1])
@@ -31,35 +28,35 @@ def calculator():
 
     if value.split(" ")[-1] not in list(accept.keys()):
         print("Not correct unit!")
-    else:
-        if value.split(" ")[-1] == list(accept.keys())[0]:
-            r  = float(value.split(" ")[0])/accept["cm"]
-            print("{:.2f} inches".format(r))
-        else:
-            r = float(value.split(" ")[0])*accept["inch"]
-            print("{:.2f} cm".format(r))
-
-def core():
-
+        return 
     
-    running = True
+    if value.split(" ")[-1] == list(accept.keys())[0]:
+        r  = float(value.split(" ")[0])/accept["cm"]
+        print("{:.2f} inches".format(r))
+    else:
+        r = float(value.split(" ")[0])*accept["inch"]
+        print("{:.2f} cm".format(r))
 
-    while running:
+def main():
+
+
+    functions = {
+        0:charCount,
+        1:calculator,
+        2:exit
+    }
+
+    while True:
         print(texts["greet"])
         print(texts["options"])
 
         choosedOption = int(input("Adja meg a navigáló kódot: "))
 
-        if choosedOption == 0:
-            charCount()
-        elif choosedOption == 1:
-            calculator()
-        elif choosedOption == 2:
-            running = False
-        else:  
-            print("Helytelen kódot ütött be!")
-            core()
+        if choosedOption in functions:
+            functions[choosedOption]()
+        else:
+            print("Helytelen kód!")
             
 if __name__ == "__main__":
-    core()
+    main()
   
