@@ -3,7 +3,7 @@ data = [row.strip() for row in open("hazi.txt", "r", encoding="utf-8").readlines
 data = [row for row in data if len(row) !=0][::3]
 cleaned = []
 
-marks= 'aáeéoóöőuúüűií.!?:-;<>,()"'
+marks= 'aáeéoóöőuúüűiíAÁEÉIÍOÓUÚÜŰÖŐ.!?:-;<>,()"'
 nr = ""
 
 for row in data:
